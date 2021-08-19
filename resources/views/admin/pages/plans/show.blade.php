@@ -19,7 +19,8 @@
                 <li><strong>Descrição: </strong>{{ $plan->description }}</li>
             </ul>
         </div>{{-- body --}}
-        <div class="card-footer">
+        <div class="card-footer d-flex">
+            <a href="{{ route('plans.edit', $plan->url) }}" class="btn btn-outline-warning mr-4"><i class="fas fa-pencil-alt"></i> Editar</a>
             <form action="{{ route('plans.destroy', $plan->url) }}" method="post">
                 @method('DELETE')
                 @csrf

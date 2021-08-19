@@ -3,19 +3,31 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdatePlan;
 use App\Models\Plan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
+/**
+ *
+ */
 class PlanController extends Controller
 {
+    /**
+     * @var Plan
+     */
     private $repository;
 
+    /**
+     * @param Plan $plan
+     */
     public function __construct(Plan $plan)
     {
         $this->repository = $plan;
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         //get all the plans
@@ -26,22 +38,31 @@ class PlanController extends Controller
         ]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         return view('admin.pages.plans.create');
     }
 
-    public function store(Request $request)
+    /**
+     * @param StoreUpdatePlan $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(StoreUpdatePlan $request)
     {
         //get all information and save on Data Base
-        $data = $request->all();
-        $data['url'] = Str::kebab($request->name);
-        $this->repository->create($data);
+        $this->repository->create($request->all());
 
         //return to index
         return redirect()->route('plans.index');
     }
 
+    /**
+     * @param $url
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function show($url)
     {
         $plan = $this->repository->where('url', $url)->first();
@@ -54,6 +75,10 @@ class PlanController extends Controller
         ]);
     }
 
+    /**
+     * @param $url
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destory($url)
     {
         $plan = $this->repository->where('url', $url)->first();
@@ -66,6 +91,10 @@ class PlanController extends Controller
         return redirect()->route('plans.index');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function search(Request $request)
     {
         $filters = $request->except('_token');
@@ -75,5 +104,38 @@ class PlanController extends Controller
             'plans' => $plans,
             'filters' => $filters
         ]);
+    }
+
+    /**
+     * @param $url
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function edit($url)
+    {
+        $plan = $this->repository->where('url', $url)->first();
+
+        if (empty($plan))
+            return redirect()->back();
+
+        return view('admin.pages.plans.edit', [
+            'plan' => $plan
+        ]);
+    }
+
+    /**
+     * @param StoreUpdatePlan $request
+     * @param $url
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(StoreUpdatePlan $request, $url)
+    {
+        $plan = $this->repository->where('url', $url)->first();
+
+        if (empty($plan))
+            return redirect()->back();
+
+        $plan->update($request->all());
+
+        return redirect()->route('plans.show', $plan->url);
     }
 }

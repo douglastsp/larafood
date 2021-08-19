@@ -11,6 +11,11 @@
         </a>
     </h1>
 
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
+        <li class="breadcrumb-item active"><a href="{{ route('plans.index') }}">Planos</a></li>
+    </ol>
+
 @stop
 
 @section('content')
@@ -34,7 +39,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>Preço</th>
-                        <th width="100"> Ações</th>
+                        <th width="200" class="text-center"> Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,7 +48,8 @@
                             <td>{{ $plan->name }}</td>
                             <td>R$ {{ number_format($plan->price, 2, ',', '.') }}</td>
                             <td>
-                                <a href="{{ route('plans.show', $plan->url) }}" class="btn btn-warning"><i class="fas fa-eye"></i>Ver</a>
+                                <a href="{{ route('details.plan.index', $plan->url) }}" class="btn btn-outline-dark"><i class="fas fa-eye"></i> Detalhes</a>
+                                <a href="{{ route('plans.show', $plan->url) }}" class="btn btn-outline-warning"><i class="fas fa-eye"></i>Ver</a>
                             </td>
                         </tr>
                     @endforeach
