@@ -23,6 +23,9 @@
 @section('content')
     <div class="card">
         <div class="card-body">
+
+            @include('admin.includes.alerts')
+
             <table class="table table-condensed">
                 <thead>
                 <tr>
@@ -34,8 +37,11 @@
                 @foreach ($details as $detail)
                     <tr>
                         <td>{{ $detail->name }}</td>
-                        <td>
-                            <a href="{{ route('plans.show', $plan->url) }}" class="btn btn-warning"><i class="fas fa-eye"></i>Ver</a>
+                        <td width="150">
+                            <a href="{{ route('details.plan.show', [$plan->url, $detail->id]) }}" class="btn btn-outline-dark"><i class="fas fa-eye"></i> Ver</a>
+                        </td>
+                        <td width="150">
+                            <a href="{{ route('details.plan.edit', [$plan->url, $detail->id]) }}" class="btn btn-warning"><i class="fas fa-eye"></i> Editar</a>
                         </td>
                     </tr>
                 @endforeach

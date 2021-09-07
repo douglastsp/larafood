@@ -12,6 +12,9 @@
 @section('content')
     <div class="card">
         <div class="card-body">
+
+            @include('admin.includes.alerts')
+
             <ul>
                 <li><strong>Nome: </strong>{{ $plan->name }}</li>
                 <li><strong>Url: </strong>{{ $plan->url }}</li>
@@ -20,7 +23,8 @@
             </ul>
         </div>{{-- body --}}
         <div class="card-footer d-flex">
-            <a href="{{ route('plans.edit', $plan->url) }}" class="btn btn-outline-warning mr-4"><i class="fas fa-pencil-alt"></i> Editar</a>
+            <a href="{{ route('details.plan.index', $plan->url) }}" class="btn btn-outline-dark mr-2"><i class="fas fa-eye"></i> Detalhes</a>
+            <a href="{{ route('plans.edit', $plan->url) }}" class="btn btn-outline-warning mr-2"><i class="fas fa-pencil-alt"></i> Editar</a>
             <form action="{{ route('plans.destroy', $plan->url) }}" method="post">
                 @method('DELETE')
                 @csrf

@@ -1,8 +1,9 @@
-@csrf
+@include('admin.includes.alerts')
 
+@csrf
 <div class="form-group">
     <label for="">Nome:</label>
-    <input class="form-control" type="text" name="name" id="" placeholder="Nome:">
+    <input class="form-control" type="text" name="name" id="" placeholder="Nome:" value=" {{ $detail->name ?? old('name') }}">
 </div>
 
 <div class="form-group">
