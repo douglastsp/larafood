@@ -27,6 +27,7 @@
             </ul>
         </div>{{-- body --}}
         <div class="card-footer d-flex">
+            <a href="{{ route('profiles.permissions', $profile->id) }}" class="btn btn-outline-dark mr-2"><i class="fas fa-lock"></i> Permissões</a>
             <a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-outline-warning mr-2"><i class="fas fa-pencil-alt"></i> Editar</a>
             <form action="{{ route('profiles.destroy', $profile->id) }}" method="post">
                 @method('DELETE')

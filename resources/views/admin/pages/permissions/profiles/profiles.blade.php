@@ -1,38 +1,23 @@
 @extends('adminlte::page')
 
-@section('title', 'Perfis')
+@section('title', 'perfis vinculados a permissão')
 
 @section('content_header')
     <h1>
-        Perfis
-        <a href="{{ route('profiles.create') }}" class="btn btn-outline-dark">
-            <i class="fas fa-plus-square"></i>
-            Novo
-        </a>
+        Perfis vinculados a permissão: {{ $permission->name }}
     </h1>
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('profiles.index') }}">Perfis</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('permissions.index') }}">Permissões</a></li>
+        <li class="breadcrumb-item active"><a href="{{ route('permissions.show', $permission->id) }}">Detalhes da permissão</a></li>
+        <li class="breadcrumb-item active"><a href="{{ route('permissions.profiles', $permission->id) }}">Perfis vinculados</a></li>
     </ol>
 
 @stop
 
 @section('content')
     <div class="card">
-        <div class="card-header">
-            <form action="{{ route('profiles.search') }}" class="form form-inline d-flex" method="post">
-                @csrf
-                <input
-                    class="form-control w-25"
-                    type="text"
-                    name="filter"
-                    id=""
-                    placeholder="Filtrar por nome"
-                    value="{{ $filters['filter'] ?? ''}}">
-                <button type="submit" class="btn btn-outline-dark"><i class="fas fa-search"></i></button>
-            </form>
-        </div> {{-- Card-header --}}
         <div class="card-body">
 
             @include('admin.includes.alerts')
@@ -41,7 +26,7 @@
                 <thead>
                 <tr>
                     <th>Nome</th>
-                    <th width="100" class="text-center"> Ações</th>
+                    <th width="140" class="text-center"> Ações</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,7 +34,7 @@
                     <tr>
                         <td>{{ $profile->name }}</td>
                         <td>
-                            <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-outline-warning"><i class="fas fa-eye"></i>Ver</a>
+                            <a href="{{ route('profiles.permission.detach', [$profile->id, $permission->id]) }}" class="btn btn-outline-danger"><i class="fas fa-trash"></i> Remover</a>
                         </td>
                     </tr>
                 @endforeach
