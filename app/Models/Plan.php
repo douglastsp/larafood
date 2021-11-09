@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Profile;
 
 class Plan extends Model
 {
@@ -15,6 +16,11 @@ class Plan extends Model
         return $this->hasMany(DetailPlan::class);
     }
 
+    public function profiles()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
+
     public function search($filter = null)
     {
         $results = $this->where('name', 'LIKE', "%{$filter}%")
@@ -22,5 +28,25 @@ class Plan extends Model
                         ->paginate(10);
 
         return $results;
+    }
+
+     /*
+     * Only Profiles not linked with this Plan
+     */
+    public function profilesAvailable($filter = null)
+    {
+        $profiles = Profile::whereNotIn('id', function ($query) {
+            $query->select('plan_profile.profile_id');
+            $query->from('plan_profile');
+            $query->whereRaw("plan_profile.plan_id={$this->id}");
+        })
+        ->where(function ($queryFilter) use ($filter) {
+            if (!empty($filter)) {
+                $queryFilter->where('profiles.name', 'LIKE', "%{$filter}%");
+            }
+        })
+        ->paginate();
+
+        return $profiles;
     }
 }

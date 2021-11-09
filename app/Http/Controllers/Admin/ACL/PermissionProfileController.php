@@ -23,7 +23,7 @@ class PermissionProfileController extends Controller
     {
         $profile = $this->profile->find($idProfile);
 
-        if (empty($profile)){
+        if (empty($profile)) {
             return redirect()->back();
         }
 
@@ -39,7 +39,7 @@ class PermissionProfileController extends Controller
     {
         $permission = $this->permission->find($idPermission);
 
-        if (empty($permission)){
+        if (empty($permission)) {
             return redirect()->back();
         }
 
@@ -55,7 +55,7 @@ class PermissionProfileController extends Controller
     {
         $profile = $this->profile->find($idProfile);
 
-        if (empty($profile)){
+        if (empty($profile)) {
             return redirect()->back();
         }
 
@@ -74,7 +74,7 @@ class PermissionProfileController extends Controller
     {
         $profile = $this->profile->find($idProfile);
 
-        if (empty($profile)){
+        if (empty($profile)) {
             return redirect()->back();
         }
 
@@ -94,7 +94,7 @@ class PermissionProfileController extends Controller
         $profile = $this->profile->find($idProfile);
         $permission = $this->permission->find($idPermission);
 
-        if (empty($profile) || empty($permission)){
+        if (empty($profile) || empty($permission)) {
             return redirect()->back();
         }
 

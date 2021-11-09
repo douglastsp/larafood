@@ -23,6 +23,7 @@
             </ul>
         </div>{{-- body --}}
         <div class="card-footer d-flex">
+            <a href="{{ route('plans.profiles', $plan->id) }}" class="btn btn-outline-dark mr-2"><i class="fas fa-lock"></i> Perfis</a>
             <a href="{{ route('details.plan.index', $plan->url) }}" class="btn btn-outline-dark mr-2"><i class="fas fa-eye"></i> Detalhes</a>
             <a href="{{ route('plans.edit', $plan->url) }}" class="btn btn-outline-warning mr-2"><i class="fas fa-pencil-alt"></i> Editar</a>
             <form action="{{ route('plans.destroy', $plan->url) }}" method="post">
