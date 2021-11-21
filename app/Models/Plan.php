@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Profile;
+use App\Models\Tenant;
 
 class Plan extends Model
 {
@@ -19,6 +20,12 @@ class Plan extends Model
     public function profiles()
     {
         return $this->belongsToMany(Profile::class);
+    }
+
+    //Getting all the tenants of the plan
+    public function tenants()
+    {
+        return $this->hasMany(Tenant::class);
     }
 
     public function search($filter = null)

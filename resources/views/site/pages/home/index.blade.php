@@ -26,7 +26,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="#" class="btn btn-lg btn-block btn-outline-primary">Assinar</a>
+                        <a href="{{ route('plan.subscription', $plan->url) }}" class="btn btn-lg btn-block btn-outline-primary">Assinar</a>
                     </div>
                 </div>
             @endforeach
