@@ -5,6 +5,12 @@ Route::prefix('admin')
         ->middleware('auth')
         ->group(function () {
             /*
+             * Categories Routes
+             */
+            Route::any('categories/search', 'CategoryController@search')->name('categories.search');
+            Route::resource('categories', 'CategoryController');
+            
+            /*
              * Users Routes
              */
             Route::any('users/search', 'UserController@search')->name('users.search');
