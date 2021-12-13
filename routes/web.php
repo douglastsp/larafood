@@ -5,6 +5,12 @@ Route::prefix('admin')
         ->middleware('auth')
         ->group(function () {
             /*
+             * Tables Routes
+             */
+            Route::any('tables/search', 'TableController@search')->name('tables.search');
+            Route::resource('tables', 'TableController');
+
+            /*
              * Products x Categories
              */
             Route::get('products/{id}/category/{idPermission}/detach', 'ProductCategoryController@detachCategoriesProduct')->name('products.categories.detach');
@@ -14,7 +20,7 @@ Route::prefix('admin')
             Route::get('categories/{id}/product', 'ProductCategoryController@products')->name('categories.products');
 
             /*
-             * Categories Routes
+             * Products Routes
              */
             Route::any('products/search', 'ProductController@search')->name('products.search');
             Route::resource('products', 'ProductController');
