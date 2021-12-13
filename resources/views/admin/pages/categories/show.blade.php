@@ -22,6 +22,7 @@
             </ul>
         </div>{{-- body --}}
         <div class="card-footer d-flex">
+            <a href="{{ route('categories.products', $category->id) }}" class="btn btn-outline-dark mr-2"><i class="fab fa-product-hunt"></i> Produtos</a>
             <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-outline-warning mr-2"><i class="fas fa-pencil-alt"></i> Editar</a>
             <form action="{{ route('categories.destroy', $category->id) }}" method="post">
                 @method('DELETE')

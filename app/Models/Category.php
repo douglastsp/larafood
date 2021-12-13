@@ -16,6 +16,11 @@ class Category extends Model
         'description'
     ];
 
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
     public function search($filter = null)
     {
         $results = $this->where('name', 'LIKE', "%{$filter}%")
