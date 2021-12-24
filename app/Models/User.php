@@ -70,4 +70,31 @@ class User extends Authenticatable
         return $results;
     }
 
+    /*
+     * Get Permissions
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    /*
+     * Only role not linked with this profile
+     */
+    public function rolesAvailable($filter = null)
+    {
+        $permissions = Role::whereNotIn('id', function ($query) {
+            $query->select('role_user.role_id');
+            $query->from('role_user');
+            $query->whereRaw("role_user.user_id={$this->id}");
+        })
+        ->where(function ($queryFilter) use ($filter) {
+            if (!empty($filter)) {
+                $queryFilter->where('roles.name', 'LIKE', "%{$filter}%");
+            }
+        })
+        ->paginate();
+
+        return $permissions;
+    }
 }

@@ -5,6 +5,15 @@ Route::prefix('admin')
         ->middleware('auth')
         ->group(function () {
             /*
+             * User x Roles
+             */
+            Route::get('users/{id}/role/{idRole}/detach', 'ACL\RoleUserController@detachRolesUser')->name('users.role.detach');
+            Route::post('users/{id}/roles', 'ACL\RoleUserController@attachRolesUser')->name('users.roles.attach');
+            Route::any('users/{id}/roles/create', 'ACL\RoleUserController@rolesAvailable')->name('users.roles.available');
+            Route::get('users/{id}/roles', 'ACL\RoleUserController@index')->name('users.roles');
+            Route::get('roles/{id}/users', 'ACL\RoleUserController@users')->name('roles.users');
+
+            /*
              * Permission x Role
              */
             Route::any('roles/{id}/permissions/create', 'ACL\PermissionRoleController@permissionsAvailable')->name('roles.permissions.available');

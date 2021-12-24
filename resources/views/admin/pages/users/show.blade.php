@@ -22,6 +22,7 @@
             </ul>
         </div>{{-- body --}}
         <div class="card-footer d-flex">
+            <a href="{{ route('users.roles', $user->id) }}" class="btn btn-outline-dark mr-2"><i class="fas fa-id-card-alt"></i> Cargos</a>
             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-outline-warning mr-2"><i class="fas fa-pencil-alt"></i> Editar</a>
             <form action="{{ route('users.destroy', $user->id) }}" method="post">
                 @method('DELETE')
