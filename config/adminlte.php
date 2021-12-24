@@ -252,8 +252,14 @@ return [
         [
             'text' => 'Perfis',
             'url'  => 'admin/profiles',
-            'icon' => 'fas fa-id-card',
+            'icon' => 'fas fa-id-badge',
             'can'  => 'Profiles',
+        ],
+        [
+            'text' => 'Cargos',
+            'url'  => 'admin/roles',
+            'icon' => 'fas fa-id-card-alt',
+            'can'  => 'Roles',
         ],
         [
             'text' => 'Permissões',

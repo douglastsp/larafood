@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Permission extends Model
+class Role extends Model
 {
-    //
     protected $fillable = ['name', 'description'];
 
     public function search($filter = null)
@@ -19,19 +18,10 @@ class Permission extends Model
     }
 
     /*
-     * Get Profiles
+     * Get Permissions
      */
-    public function profiles()
+    public function permissions()
     {
-        return $this->belongsToMany(Profile::class, 'permission_profile');
+        return $this->belongsToMany(Permission::class, 'permission_profile');
     }
-
-    /*
-     * Get Profiles
-     */
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class, 'permission_role');
-    }
-
 }

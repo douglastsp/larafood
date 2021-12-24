@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Categorias disponíveis para o produto')
+@section('title', 'Permissões disponíveis para o cargo')
 
 @section('content_header')
     <h1>
-        Categorias disponíveis para o produto: {{ $product->name }}
+        Permissões disponíveis para o cargo: {{ $role->name }}
         <a href="" class="btn btn-outline-dark">
             <i class="fas fa-plus-square"></i>
             Novo
@@ -13,9 +13,10 @@
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('products.index') }}">Perfis</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('products.categories', $product->id) }}">Categorias do produto</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('products.categories.available', $product->id) }}">Categorias disponíveis para o produto</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('roles.index') }}">Cargos</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('roles.show') }}">Detalhes do cargo</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('roles.permissions', $role->id) }}">Permissões do cargo</a></li>
+        <li class="breadcrumb-item active"><a href="{{ route('roles.permissions.available', $role->id) }}">Permissões disponíveis para o cargo</a></li>
     </ol>
 
 @stop
@@ -23,7 +24,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <form action="{{ route('products.categories.available', $product->id) }}" class="form form-inline d-flex" method="post">
+            <form action="{{ route('roles.permissions.available', $role->id) }}" class="form form-inline d-flex" method="post">
                 @csrf
                 <input
                     class="form-control w-25"
@@ -47,12 +48,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <form action="{{ route('products.categories.attach', $product->id) }}" method="POST">
+                <form action="{{ route('roles.permissions.attach', $role->id) }}" method="POST">
                     @csrf
-                    @foreach ($categories as $category)
+                    @foreach ($permissions as $permission)
                         <tr>
-                            <td><input type="checkbox" name="categories[]" value="{{ $category->id }}"></td>
-                            <td>{{ $category->name }}</td>
+                            <td><input type="checkbox" name="permissions[]" value="{{ $permission->id }}"></td>
+                            <td>{{ $permission->name }}</td>
                         </tr>
                     @endforeach
                     <tr>
@@ -66,9 +67,9 @@
         </div> {{-- Card-Body --}}
         <div class="card-footer">
             @if(empty($filters))
-                {!! $categories->links() !!}
+                {!! $permissions->links() !!}
             @else
-                {!! $categories->appends($filters)->links() !!}
+                {!! $permissions->appends($filters)->links() !!}
             @endif
         </div>
     </div>{{-- Card --}}
