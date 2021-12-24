@@ -7,10 +7,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\Tenant;
+use App\Models\Traits\UserACLTrait;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use UserACLTrait;
 
     /**
      * The attributes that are mass assignable.

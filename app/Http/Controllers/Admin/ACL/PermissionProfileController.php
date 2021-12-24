@@ -83,7 +83,7 @@ class PermissionProfileController extends Controller
                 ->back()
                 ->with('warning', 'Não há permissões selecionadas para vincular a este perfil!');
         }
-        dd($request->permissions);
+
         $profile->permissions()->attach($request->permissions);
 
         return redirect()->route('profiles.permissions', $idProfile)->with('message', 'Permissões vinculadas com sucesso!');

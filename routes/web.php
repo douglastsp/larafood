@@ -5,6 +5,12 @@ Route::prefix('admin')
         ->middleware('auth')
         ->group(function () {
             /*
+             * Products Routes
+             */
+            Route::any('tenants/search', 'TenantController@search')->name('tenants.search');
+            Route::resource('tenants', 'TenantController');
+            
+            /*
              * Tables Routes
              */
             Route::any('tables/search', 'TableController@search')->name('tables.search');
@@ -48,9 +54,9 @@ Route::prefix('admin')
             /*
              * Permission x Profile
              */
+            Route::any('profiles/{id}/permissions/create', 'ACL\PermissionProfileController@permissionsAvailable')->name('profiles.permissions.available');
             Route::get('profiles/{id}/permission/{idPermission}/detach', 'ACL\PermissionProfileController@detachPermissionsProfile')->name('profiles.permission.detach');
             Route::post('profiles/{id}/permissions', 'ACL\PermissionProfileController@attachPermissionsProfile')->name('profiles.permissions.attach');
-            Route::any('profiles/{id}/permissions/create', 'ACL\PermissionProfileController@permissionsAvailable')->name('profiles.permissions.available');
             Route::get('profiles/{id}/permissions', 'ACL\PermissionProfileController@index')->name('profiles.permissions');
             Route::get('permissions/{id}/profile', 'ACL\PermissionProfileController@profiles')->name('permissions.profiles');
 

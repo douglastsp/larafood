@@ -30,6 +30,15 @@ class Tenant extends Model
     //getting the plan that tenant was added
     public function plan()
     {
-        return $this->belongsTo(Tenant::class);
+        return $this->belongsTo(Plan::class);
+    }
+
+    public function search($filter = null)
+    {
+        $results = $this->where('name', 'LIKE', "%{$filter}%")
+                        ->orWhere('email', 'LIKE', "%{$filter}%")
+                        ->paginate(10);
+
+        return $results;
     }
 }

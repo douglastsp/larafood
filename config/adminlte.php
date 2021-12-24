@@ -238,39 +238,52 @@ return [
 
         // Sidebar items:
         [
+            'text' => 'Empresas',
+            'url'  => 'admin/tenants',
+            'icon' => 'fas fa-building',
+            'can'  => 'Tenants',
+        ],
+        [
             'text' => 'Planos',
             'url'  => 'admin/plans',
             'icon' => 'fas fa-list-alt',
+            'can'  => 'Plans',
         ],
         [
             'text' => 'Perfis',
             'url'  => 'admin/profiles',
             'icon' => 'fas fa-id-card',
+            'can'  => 'Profiles',
         ],
         [
             'text' => 'Permissões',
             'url'  => 'admin/permissions',
             'icon' => 'fas fa-lock',
+            'can'  => 'Permissions',
         ],
         [
             'text' => 'Usuários',
             'url'  => 'admin/users',
             'icon' => 'fas fa-users',
+            'can'  => 'Users',
         ],
         [
             'text' => 'Categorias',
             'url'  => 'admin/categories',
             'icon' => 'fas fa-layer-group',
+            'can'  => 'Categories',
         ],
         [
             'text' => 'Produtos',
             'url'  => 'admin/products',
             'icon' => 'fas fa-hamburger',
+            'can'  => 'Products',
         ],
         [
             'text' => 'Mesas',
             'url'  => 'admin/tables',
             'icon' => 'fas fa-tablet',
+            'can'  => 'Tables',
         ],
     ],
 
