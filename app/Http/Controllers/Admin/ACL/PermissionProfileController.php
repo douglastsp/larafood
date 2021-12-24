@@ -103,5 +103,4 @@ class PermissionProfileController extends Controller
 
         return redirect()->back()->with('message', 'Desvinculado com sucesso!');
     }
-
 }

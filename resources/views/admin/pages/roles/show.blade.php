@@ -27,7 +27,7 @@
             </ul>
         </div>{{-- body --}}
         <div class="card-footer d-flex">
-            {{-- <a href="{{ route('roles.permissions', $role->id) }}" class="btn btn-outline-dark mr-2"><i class="fas fa-lock"></i> Permissões</a> --}}
+            <a href="{{ route('roles.permissions', $role->id) }}" class="btn btn-outline-dark mr-2"><i class="fas fa-lock"></i> Permissões</a>
             <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-outline-warning mr-2"><i class="fas fa-pencil-alt"></i> Editar</a>
             <form action="{{ route('roles.destroy', $role->id) }}" method="post">
                 @method('DELETE')

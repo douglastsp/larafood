@@ -5,16 +5,16 @@ Route::prefix('admin')
         ->middleware('auth')
         ->group(function () {
             /*
-             * Permission x Profile
+             * Permission x Role
              */
-            Route::any('profiles/{id}/permissions/create', 'ACL\PermissionProfileController@permissionsAvailable')->name('profiles.permissions.available');
-            Route::get('profiles/{id}/permission/{idPermission}/detach', 'ACL\PermissionProfileController@detachPermissionsProfile')->name('profiles.permission.detach');
-            Route::post('profiles/{id}/permissions', 'ACL\PermissionProfileController@attachPermissionsProfile')->name('profiles.permissions.attach');
-            Route::get('profiles/{id}/permissions', 'ACL\PermissionProfileController@index')->name('profiles.permissions');
-            Route::get('permissions/{id}/profile', 'ACL\PermissionProfileController@profiles')->name('permissions.profiles');
+            Route::any('roles/{id}/permissions/create', 'ACL\PermissionRoleController@permissionsAvailable')->name('roles.permissions.available');
+            Route::get('roles/{id}/permission/{idPermission}/detach', 'ACL\PermissionRoleController@detachPermissionsRole')->name('roles.permission.detach');
+            Route::post('roles/{id}/permissions', 'ACL\PermissionRoleController@attachPermissionsRole')->name('roles.permissions.attach');
+            Route::get('roles/{id}/permissions', 'ACL\PermissionRoleController@index')->name('roles.permissions');
+            Route::get('permissions/{id}/role', 'ACL\PermissionRoleController@roles')->name('permissions.roles');
 
             /*
-             * Permissions Routes
+             * Roles Routes
              */
             Route::any('roles/search', 'ACL\RoleController@search')->name('roles.search');
             Route::resource('roles', 'ACL\RoleController');
