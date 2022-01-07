@@ -16,3 +16,9 @@ Route::get('/categories', 'Api\CategoryApiController@categoriesByTenant');
  */
 Route::get('/tables/{id}', 'Api\TableApiController@show');
 Route::get('/tables', 'Api\TableApiController@tablesByTenant');
+
+/**
+ * Products of tenant
+ */
+Route::get('/products/{flag}', 'Api\ProductApiController@show');
+Route::get('/products', 'Api\ProductApiController@productsByTenant');

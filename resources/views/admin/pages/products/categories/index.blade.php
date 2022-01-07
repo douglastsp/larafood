@@ -13,7 +13,8 @@
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('products.index') }}">Categorias</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('products.index') }}">Produtos</a></li>
+        <li class="breadcrumb-item active"><a href="{{ route('products.show', $product->id) }}">detalhes do produto</a></li>
         <li class="breadcrumb-item active"><a href="{{ route('products.categories', $product->id) }}">Categorias do produto</a></li>
     </ol>
 
