@@ -1,24 +1,33 @@
 <?php
-/**
- * Tenants
- */
-Route::get('/tenants/{uuid}', 'Api\TenantApiController@show');
-Route::get('/tenants', 'Api\TenantApiController@index');
 
 /**
- * Categories of tenant
+ * Version 1
  */
-Route::get('/categories/{url}', 'Api\CategoryApiController@show');
-Route::get('/categories', 'Api\CategoryApiController@categoriesByTenant');
-
-/**
- * Categories of tenant
- */
-Route::get('/tables/{id}', 'Api\TableApiController@show');
-Route::get('/tables', 'Api\TableApiController@tablesByTenant');
-
-/**
- * Products of tenant
- */
-Route::get('/products/{flag}', 'Api\ProductApiController@show');
-Route::get('/products', 'Api\ProductApiController@productsByTenant');
+Route::group([
+    'prefix' => 'v1',
+    'namespace' => 'Api'
+], function () {
+    /**
+     * Tenants
+     */
+    Route::get('/tenants/{uuid}', 'TenantApiController@show');
+    Route::get('/tenants', 'TenantApiController@index');
+    
+    /**
+     * Categories of tenant
+     */
+    Route::get('/categories/{url}', 'CategoryApiController@show');
+    Route::get('/categories', 'CategoryApiController@categoriesByTenant');
+    
+    /**
+     * Categories of tenant
+     */
+    Route::get('/tables/{id}', 'TableApiController@show');
+    Route::get('/tables', 'TableApiController@tablesByTenant');
+    
+    /**
+     * Products of tenant
+     */
+    Route::get('/products/{flag}', 'ProductApiController@show');
+    Route::get('/products', 'ProductApiController@productsByTenant');
+});
