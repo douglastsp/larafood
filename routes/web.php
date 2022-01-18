@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Client;
+
 Route::prefix('admin')
         ->namespace('Admin')
         ->middleware('auth')
