@@ -17,6 +17,7 @@ class CategoryObserver
     {
         //before create a category get the name and transform into url
         $category->url = Str::kebab($category->name);
+        $category->uuid = Str::uuid();
     }
 
     /**

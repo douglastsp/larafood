@@ -17,6 +17,7 @@ class ProductObeserver
     {
         //before create a product get the name and transform into flag
         $product->flag = Str::kebab($product->title);
+        $product->uuid = Str::uuid();
     }
 
     /**

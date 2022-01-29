@@ -6,5 +6,5 @@ interface ProductRepositoryInterface
 {
     public function getProductsByTenantId(Int $id, Array $categories);
 
-    public function getProductByFlag(String $flag);
+    public function getProductByUuid(String $identify);
 }
